@@ -1,50 +1,184 @@
-import cors from 'cors'
-import express from 'express'
-// import { config } from '~/config'
-// import { PetsController } from '~/resources/pets/pets.controller'
-// import { ExceptionsHandler } from '~/middlewares/exceptions.handler'
-// import { UnknownRoutesHandler } from '~/middlewares/unknownRoutes.handler'
+import { Request, Response } from "express"
+
+// server.js
+const jsonServer = require('json-server')
+const server = jsonServer.create()
+const router = jsonServer.router('db.json')
+const middlewares = jsonServer.defaults()
+
+server.use(middlewares)
+
+
+
 
 /**
- * On créé une nouvelle "application" express
- */
-const app = express()
-
-/**
- * On dit à Express que l'on souhaite parser le body des requêtes en JSON
+ * @api {get} /echo Request Echo test
+ * @apiName GetEcho
+ * @apiGroup Echo
  *
- * @example app.post('/', (req) => req.body.prop)
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
  */
-app.use(express.json())
+server.get('/echo', (req: Request, res: Response) => {
+    res.jsonp(req.query)
+})
+  
+/**
+ * @api {get} /houses Request Houses
+ * @apiName GetHouse
+ * @apiGroup House
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
+ */
+server.get('/houses', (req: Request, res: Response) => {
+
+})
 
 /**
- * On dit à Express que l'on souhaite autoriser tous les noms de domaines
- * à faire des requêtes sur notre API.
+ * @api {get} /houses/:id Request Houses
+ * @apiName GetHouse
+ * @apiGroup House
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
  */
-app.use(cors())
+server.get('/houses/:id', (req: Request, res: Response) => {
+
+})
 
 /**
- * Toutes les routes CRUD pour les animaux seronts préfixées par `/pets`
+ * @api {post} /houses Request Houses
+ * @apiName PostHouse
+ * @apiGroup House
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {}
  */
-// app.use('/pets', PetsController)
+server.post('/houses', (req: Request, res: Response) => {
+
+})
 
 /**
- * Homepage (uniquement necessaire pour cette demo)
+ * @api {patch} /houses/:id Request Houses
+ * @apiName PatchHouse
+ * @apiGroup House
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
  */
-app.get('/', (req, res) => res.send('🏠'))
+server.patch('/houses/:id', (req: Request, res: Response) => {
+
+})
 
 /**
- * Pour toutes les autres routes non définies, on retourne une erreur
+ * @api {delete} /houses/:id Request Houses
+ * @apiName DeleteHouse
+ * @apiGroup House
+ *
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 202 OK
+ *     {}
  */
-// app.all('*', UnknownRoutesHandler)
+server.delete('/houses/:id', (req: Request, res: Response) => {
+
+})
 
 /**
- * Gestion des erreurs
- * /!\ Cela doit être le dernier `app.use`
+ * @api {get} /houses/:housesId/people Request Houses people
+ * @apiName GetHousePeople
+ * @apiGroup HousePeople
+ *
+ * @apiParam {Number} housesId Houses unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
  */
-// app.use(ExceptionsHandler)
+server.get('/houses/:housesId/people', (req: Request, res: Response) => {
+
+})
 
 /**
- * On demande à Express d'ecouter les requêtes sur le port défini dans la config
+ * @api {get} /houses/:housesId/people/:id Request Houses people
+ * @apiName GetHousePeople
+ * @apiGroup HousePeople
+ *
+ * @apiParam {Number} housesId Houses unique ID.
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
  */
-app.listen(3050, () => console.log('Silence, ça tourne.'))
+server.get('/houses/:housesId/people/:id', (req: Request, res: Response) => {
+
+})
+
+/**
+ * @api {post} /houses/:housesId/people Request Houses people
+ * @apiName PostHousePeople
+ * @apiGroup HousePeople
+ *
+ * @apiParam {Number} housesId Houses unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 201 OK
+ *     {}
+ */
+server.post('/houses/:housesId/people', (req: Request, res: Response) => {
+
+})
+
+/**
+ * @api {patch} /houses/:housesId/people/:id Request Houses people
+ * @apiName PatchHousePeople
+ * @apiGroup HousePeople
+ *
+ * @apiParam {Number} housesId Houses unique ID.
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
+ */
+server.patch('/houses/:housesId/people/:id', (req: Request, res: Response) => {
+
+})
+
+/**
+ * @api {delete} /houses/:housesId/people/:id Request Houses people
+ * @apiName DeleteHousePeople
+ * @apiGroup HousePeople
+ *
+ * @apiParam {Number} housesId Houses unique ID.
+ * @apiParam {Number} id Users unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 202 OK
+ *     {}
+ */
+server.delete('/houses/:housesId/people/:id', (req: Request, res: Response) => {
+
+})
+
+
+// To handle POST, PUT and PATCH you need to use a body-parser
+// You can use the one used by JSON Server
+server.use(jsonServer.bodyParser)
+
+server.use(router)
+server.listen(3010, () => {
+  console.log('JSON Server is running')
+})

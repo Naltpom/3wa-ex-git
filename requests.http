@@ -1,0 +1,47 @@
+### Fetch user 1
+GET http://localhost:3010/echo
+
+### Signup a new user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "famsa@ab.com",
+    "password": "a"
+}
+
+### Login a new user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "faa@ab.com",
+    "password": "a"
+}
+
+### Fetch user 1
+GET http://localhost:3000/auth/whoami
+
+### Fetch user 1
+POST http://localhost:3000/auth/signout
+
+### Fetch user 1
+GET http://localhost:3000/auth/10
+
+### Fetch users
+GET http://localhost:3000/auth
+
+### Fetch users with filter
+GET http://localhost:3000/auth?email=a@a.com
+
+### Delete a user given id
+DELETE  http://localhost:3000/auth/1
+
+### Update a user
+PATCH http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+    "email": "a@a.com",
+    "password": "a"
+}
