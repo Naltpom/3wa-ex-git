@@ -1,0 +1,40 @@
+{
+  "name": "3wa-ex-git",
+  "version": "1.0.0",
+  "description": "Avec JSON-SERVER  https://www.npmjs.com/package/json-server",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon --watch src -e js,ts,json --exec \"ts-node src/app.ts\"",
+    "build": "tsup src/app.ts --format cjs --clean",
+    "start": "node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naltpom/3wa-ex-git.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naltpom/3wa-ex-git/issues"
+  },
+  "homepage": "https://github.com/Naltpom/3wa-ex-git#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "json-server": "^0.17.0",
+    "rxjs": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/jest": "28.1.8",
+    "@types/node": "^16.18.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.3.2",
+    "ts-loader": "^9.2.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "tsup": "^6.3.0",
+    "typescript": "^4.8.4"
+  }
+}
